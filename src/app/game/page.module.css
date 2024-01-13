@@ -1,0 +1,12 @@
+.main {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+}
+
+.game {
+  border: 3px solid #57360b;
+}
+
+.feed {
+  color: whitesmoke;
+}
