@@ -8,7 +8,7 @@ export enum ShipTypes {
   U
 }
 
-export type StartingShips = {
+export type ShipCounts = {
   [key in ShipTypes]: number 
 }
 
@@ -26,7 +26,7 @@ export interface SpaceCoords {
 }
 
 class Player {
-  static startingShips:StartingShips = {
+  static startingShips: ShipCounts = {
     [ShipTypes.C]: 5,
     [ShipTypes.B]: 4,
     [ShipTypes.D]: 3,
@@ -34,7 +34,7 @@ class Player {
     [ShipTypes.U]: 2,
   };
 
-  static shipAbbrs:ShipAbbrs = {
+  static shipAbbrs: ShipAbbrs = {
     [ShipTypes.C]: "C",
     [ShipTypes.B]: "B",
     [ShipTypes.D]: "D",
@@ -42,7 +42,7 @@ class Player {
     [ShipTypes.U]: "U",
   };
 
-  static ships:Ships = {
+  static ships: Ships = {
     [ShipTypes.C]: "Carrier",
     [ShipTypes.B]: "Battleship",
     [ShipTypes.D]: "Destroyer",
@@ -67,14 +67,22 @@ class Player {
     return board
   }
 
-  public name: string
-  public board: PlayerBoard;
-  public ships: StartingShips
+  private name: string
+  private board: PlayerBoard;
+  private ships: ShipCounts
 
   constructor(name:string) {
     this.name = name
     this.board = Player.generateEmptyBoard()
     this.ships = {...Player.startingShips}
+  }
+
+  get playerName() {
+    return this.name
+  }
+
+  get playerBoard() {
+    return this.board
   }
 
   setShip(type:ShipTypes, spaces:SpaceCoords[]) {
